@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title>"Rock Paper Scissors"</title>
+  <meta charset = "UTF-8">
+ </head>
+ <body>
+ <script>
+
+  function computerPlay() {
+
+   let choices = ["rock", "paper", "scissors"]
+   selectedChoice = choices[Math.floor(Math.random()*choices.length)]   ;
+   return selectedChoice; 
+  }
+  
+  function playRound(computerChoice , myChoice) {
+  
+    if(computerChoice == "paper" && myChoice == "rock"){
+      console.log("paper beats rock");
+      return "You Lose";
+     
+
+    }else if(computerChoice == "rock" && myChoice == "paper"){
+      console.log("paper beats rock");
+      return "You Win";
+     
+
+    }else if(computerChoice == "paper" && myChoice == "scissors"){
+      console.log("scissors beats paper");
+      return "You Win";
+    
+    }else if(computerChoice == "scissors" && myChoice == "paper"){
+      console.log("scissors beats paper");
+      return "You Lose";
+      
+    }else if(computerChoice == "rock" && myChoice == "scissors"){
+      console.log("rock beats scissors");
+      return "You Lose";
+      
+
+    }else if(computerChoice == "scissors" && myChoice == "rock"){
+      console.log("rock beats scissors");
+      return "You Win"
+     
+
+    }else{  
+      console.log("It's a Ties")
+      return;
+     
+  }
+  
+}
+  function game(computerChoice , myChoice) {
+
+    let computerScore = 0;
+    let myScore = 0;
+  
+    if(playRound(computerChoice , myChoice) === "You Win"){
+      myScore++;
+      console.log("MyScore:"+ myScore);
+
+    }else if(playRound(computerChoice , myChoice) === "You Lose"){
+      computerScore++;
+      console.log("computerscore:" + computerScore);
+    }
+    
+    if (myScore > computerScore){
+      let finalScore = "Final Score :" + myScore;
+      console.log("YOU WON");
+    }else if(myScore < computerScore){
+      let finalScore = "Final Score :" + computerScore;
+      console.log("YOU LOST");
+    }else{
+      console.log("NOBODY WON");
+  }
+    return;
+   }
+
+  
+  for (score = 0; score < 3; score++){
+
+    let computerChoice = computerPlay();
+    let myChoices = prompt("your choice");
+    let myChoice = myChoices.toLowerCase();
+
+
+   console.log(game(computerChoice , myChoice));
+  }
+
+ </script>
+ </body>
+</html>  
+
