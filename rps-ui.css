@@ -1,0 +1,41 @@
+.btndiv{
+ display: grid;   
+ row-gap: 10px;
+}
+
+#player{
+margin-bottom: 50px; 
+}
+#playerscore{
+ margin-top: 5px;;
+}
+
+
+#console{
+ background-color: whitesmoke;   
+ border : 2px solid black;
+ width: 38%;
+ margin: auto;
+ padding: 35px 35px 130px 35px;
+ display: flex;
+ height: 150px;
+
+}
+
+.display{
+ border : 2px solid ;
+ margin-left: 75px;
+ background-color: black;
+ width: 100%;
+ padding: 10px;
+
+}
+
+.scores{
+ border : 1px hidden white;   
+ width: 110%; 
+ margin-left: 75px;
+ margin-top: 29px;
+ height: 60px;
+ padding: 4px;
+}

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title>"Rock Paper Scissors"</title>
+  <meta charset = "UTF-8">
+  <link href = "rps-ui.css" rel = "stylesheet">
+ </head>
+ <body>
+
+  <div id = "console">    
+   <div class = "btndiv">
+   <button id = "btn1" class = "btndisplay">Rock</button>
+   <button class = "btndisplay">Paper</button> 
+   <button class = "btndisplay">Scissors</button>
+   </div>
+   <div> 
+    <div class ="display"> 
+     <p id = "player"></p>
+     <p id = "comp"></p>
+    </div>
+    <div class = "scores"> 
+     <p id = "playerscore"></p>
+     <p id = "computerscore"></p> 
+    </div>
+     
+ </div>
+ 
+  <script>
+  //let choices = ["rock", "paper", "scissors"]; 
+  function computerPlay(){
+    let choices = ["rock", "paper", "scissors"];
+    selectedChoice = choices[Math.floor(Math.random()*choices.length)];
+    return selectedChoice;
+  }
+
+  const playerChoice = document.querySelectorAll("button");
+  let each = Array.from(playerChoice);
+  
+   each.forEach(
+   (item)=>item.addEventListener("click", () => {
+   player.textContent = "PLAYER:" + item.innerText;
+   computer.textContent = "COMPUTER:";
+ 
+   playRound(computerPlay() , ...each)
+}))   
+  
+  const player = document.querySelector("#player");  
+  player.style.color = "white";
+  player.textContent = "PLAYER:";
+
+  const computer = document.querySelector("#comp");
+  computer.style.color = "white";
+  computer.textContent = "COMPUTER:"
+
+  const playerscore = document.querySelector("#playerscore");
+  playerscore.textContent = "player score:";
+  playerscore.style.fontSize = "small";
+  playerscore.style.fontWeight = "bold";
+
+
+
+  const computerscore = document.querySelector("#computerscore");
+  computerscore.textContent = "computer score:";
+  computerscore.style.fontSize = "small";
+  computerscore.style.fontWeight = "bold";
+  
+
+  
+  player.appendChild(player);
+  computer.appendChild(computer);
+  playerscore.appendChild(playerscore);
+  computerscore.appendChild(computerscore);
+
+   function playRound(computerChoice , myChoice) {
+     computerChoice = computerPlay() ;
+     myChoice = each;
+    
+    if(computerChoice === "paper" && myChoice === "Rock" ){
+      console.log("paper beats rock");
+      return;
+     
+
+    }else if(computerChoice === "rock" && myChoice === "Paper"  ){
+      console.log("paper beats rockssss");
+      return;
+     
+
+    }else if(computerChoice === "paper" && myChoice === "Scissors" ){
+      console.log("scissors beats paper");
+      return;
+    
+    }else if(computerChoice === "scissors" && myChoice === "Paper" ){
+      console.log("scissors beats paper");
+      return;
+      
+    }else if(computerChoice === "rock" && myChoice === "Scissors"){
+      console.log("rock beats scissors");
+      return;
+      
+
+    }else if(computerChoice === "scissors" && myChoice === "Rock"){
+      console.log("rock beats scissors");
+      return;
+     
+    }else{  
+      console.log("It's a Tie")
+      return;
+     
+  }
+  
+}
+/*
+  function game(computerChoice , myChoice) {
+
+    let computerScore = 0;
+    let myScore = 0;
+  
+    if(playRound(computerChoice , myChoice) === "You Win"){
+      myScore++;
+      console.log("MyScore:"+ myScore);
+
+    }else if(playRound(computerChoice , myChoice) === "You Lose"){
+      computerScore++;
+      console.log("computerscore:" + computerScore);
+    }
+    
+    if (myScore > computerScore){
+      let finalScore = "Final Score :" + myScore;
+      console.log("YOU WON");
+    }else if(myScore < computerScore){
+      let finalScore = "Final Score :" + computerScore;
+      console.log("YOU LOST");
+    }else{
+      console.log("NOBODY WON");
+  }
+    return;
+   }
+   */
+ </script>
+ </body>
+</html>  
+
