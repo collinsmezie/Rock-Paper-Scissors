@@ -18,15 +18,17 @@
      <p id = "player"></p>
      <p id = "comp"></p>
     </div>
+    <div id = "output"> </div>
     <div class = "scores"> 
      <p id = "playerscore"></p>
      <p id = "computerscore"></p> 
     </div>
-     
- </div>
+  </div>
  
   <script>
-  //let choices = ["rock", "paper", "scissors"]; 
+  let myScore = 0;
+  let computerScore = 0;  
+
   function computerPlay(){
     let choices = ["rock", "paper", "scissors"];
     selectedChoice = choices[Math.floor(Math.random()*choices.length)];
@@ -35,15 +37,17 @@
 
   const playerChoice = document.querySelectorAll("button");
   let each = Array.from(playerChoice);
+  each.forEach((item)=>item.addEventListener("click", () => {
+
+  player.textContent = "PLAYER: " + item.innerText;
+  test = playRound(computerPlay() , item.innerText);
+  console.log(test);
+  console.log(score(test));
+  stopGame(myScore,computerScore)
+  }));
   
-   each.forEach(
-   (item)=>item.addEventListener("click", () => {
-   player.textContent = "PLAYER:" + item.innerText;
-   computer.textContent = "COMPUTER:";
- 
-   playRound(computerPlay() , ...each)
-}))   
-  
+  const outputWindow = document.querySelector("#output");
+
   const player = document.querySelector("#player");  
   player.style.color = "white";
   player.textContent = "PLAYER:";
@@ -53,89 +57,130 @@
   computer.textContent = "COMPUTER:"
 
   const playerscore = document.querySelector("#playerscore");
-  playerscore.textContent = "player score:";
+  playerscore.textContent = "player score: " + myScore;
   playerscore.style.fontSize = "small";
   playerscore.style.fontWeight = "bold";
 
-
-
   const computerscore = document.querySelector("#computerscore");
-  computerscore.textContent = "computer score:";
+  computerscore.textContent = "computer score: " + computerScore;
   computerscore.style.fontSize = "small";
   computerscore.style.fontWeight = "bold";
   
+ // player.appendChild(player);
+ // computer.appendChild(computer);
+ // playerscore.appendChild(playerscore);
+  //computerscore.appendChild(computerscore);
 
-  
-  player.appendChild(player);
-  computer.appendChild(computer);
-  playerscore.appendChild(playerscore);
-  computerscore.appendChild(computerscore);
-
-   function playRound(computerChoice , myChoice) {
-     computerChoice = computerPlay() ;
-     myChoice = each;
-    
-    if(computerChoice === "paper" && myChoice === "Rock" ){
-      console.log("paper beats rock");
-      return;
-     
-
-    }else if(computerChoice === "rock" && myChoice === "Paper"  ){
-      console.log("paper beats rockssss");
-      return;
-     
-
-    }else if(computerChoice === "paper" && myChoice === "Scissors" ){
-      console.log("scissors beats paper");
-      return;
-    
-    }else if(computerChoice === "scissors" && myChoice === "Paper" ){
-      console.log("scissors beats paper");
-      return;
+  function playRound(computerChoice , mychoice) {
       
-    }else if(computerChoice === "rock" && myChoice === "Scissors"){
-      console.log("rock beats scissors");
-      return;
-      
+    if(computerChoice === "paper" && mychoice === "Rock" ){
+      computer.textContent = "COMPUTER: " + computerChoice;
+      comment = "YOU LOSE";
+      outputWindow.style.color = "red";   
+      outputWindow.style.fontSize = "small";
+      outputWindow.style.fontWeight = "bold";
+      outputWindow.textContent = comment;
+      return comment;
 
-    }else if(computerChoice === "scissors" && myChoice === "Rock"){
-      console.log("rock beats scissors");
-      return;
+    }else if(computerChoice === "rock" && mychoice === "Paper"  ){
+      computer.textContent = "COMPUTER: " + computerChoice;
+      comment = "YOU WIN"; 
+      outputWindow.style.color = "green";
+      outputWindow.style.fontSize = "small";
+      outputWindow.style.fontWeight = "bold";
+      outputWindow.textContent = comment;  
+      return comment;
+
+    }else if(computerChoice === "paper" && mychoice === "Scissors" ){
+      computer.textContent = "COMPUTER: " + computerChoice;
+      comment = "YOU WIN";  
+      outputWindow.style.color = "green";   
+      outputWindow.style.fontSize = "small";
+      outputWindow.style.fontWeight = "bold";
+      outputWindow.textContent = comment;    
+      return comment;
+    
+    }else if(computerChoice === "scissors" && mychoice === "Paper" ){
+      computer.textContent = "COMPUTER: " + computerChoice;
+      comment = "YOU LOSE";   
+      outputWindow.style.color = "red";     
+      outputWindow.style.fontSize = "small";
+      outputWindow.style.fontWeight = "bold";
+      outputWindow.textContent = comment; 
+      return comment;
+      
+    }else if(computerChoice === "rock" && mychoice === "Scissors"){
+      computer.textContent = "COMPUTER: " + computerChoice;
+      comment = "YOU LOSE";   
+      outputWindow.style.color = "red";   
+      outputWindow.style.fontSize = "small";
+      outputWindow.style.fontWeight = "bold";
+      outputWindow.textContent = comment;
+      return comment;
+      
+    }else if(computerChoice === "scissors" && mychoice === "Rock"){
+      computer.textContent = "COMPUTER: " + computerChoice;
+      comment = "YOU WIN";
+      outputWindow.style.color = "green";
+      outputWindow.style.fontSize = "small";
+      outputWindow.style.fontWeight = "bold";
+      outputWindow.textContent = comment;
+      return comment;
      
     }else{  
-      console.log("It's a Tie")
-      return;
-     
+      computer.textContent = "COMPUTER: " + computerChoice;
+      comment = "Tie";
+      outputWindow.style.color = "black";   
+      outputWindow.style.fontSize = "small";
+      outputWindow.style.fontWeight = "bold";
+      outputWindow.textContent = comment;
+      return comment;
+     }
   }
   
-}
-/*
-  function game(computerChoice , myChoice) {
+  function score(scores){
+   
+    if(scores === "YOU WIN"){
+      myScore += 1;
+      winner = playerscore.textContent = "player score: " + myScore;
+      return winner;
 
-    let computerScore = 0;
-    let myScore = 0;
-  
-    if(playRound(computerChoice , myChoice) === "You Win"){
-      myScore++;
-      console.log("MyScore:"+ myScore);
-
-    }else if(playRound(computerChoice , myChoice) === "You Lose"){
-      computerScore++;
-      console.log("computerscore:" + computerScore);
-    }
+    }else if(scores === "YOU LOSE"){
+      computerScore += 1;
+      winner = computerscore.textContent = "computer score: " + computerScore;
+      return winner;
     
-    if (myScore > computerScore){
-      let finalScore = "Final Score :" + myScore;
-      console.log("YOU WON");
-    }else if(myScore < computerScore){
-      let finalScore = "Final Score :" + computerScore;
-      console.log("YOU LOST");
     }else{
-      console.log("NOBODY WON");
-  }
-    return;
+      console.log("Nobody Wins")
+      return;
+    } 
+ }    
+  
+ function stopGame(Player , comp){
+   
+    if(Player >= 5){
+     outputWindow.style.color = "green"; 
+     outputWindow.textContent = "YOU WON THIS ROUND";
+     player.textContent = "PLAYER:";
+     computer.textContent = "COMPUTER:"
+     myScore = 0;
+     playerscore.textContent = "player score: " + myScore;
+     computerScore = 0;
+     computerscore.textContent = "computer score: " + computerScore;
+     return outputWindow.textContent;
+
+    }else if(comp >= 5){
+      outputWindow.style.color = "red";
+      outputWindow.textContent = "YOU LOST THIS ROUND";
+      player.textContent = "PLAYER:";
+      computer.textContent = "COMPUTER:"
+      myScore = 0;
+      playerscore.textContent = "player score: " + myScore;
+      computerScore = 0;
+      computerscore.textContent = "computer score: " + computerScore;
+      return outputWindow.textContent;
    }
-   */
+ }
  </script>
  </body>
 </html>  

@@ -7,7 +7,13 @@
 margin-bottom: 50px; 
 }
 #playerscore{
- margin-top: 5px;;
+ margin: 8px 16px 8px 2px;
+ padding: 1px;
+}
+
+#computerscore{
+ margin: 8px 16px 8px 2px;
+ padding: 1px;
 }
 
 
@@ -18,7 +24,7 @@ margin-bottom: 50px;
  margin: auto;
  padding: 35px 35px 130px 35px;
  display: flex;
- height: 150px;
+ height: 160px;
 
 }
 
@@ -28,14 +34,22 @@ margin-bottom: 50px;
  background-color: black;
  width: 100%;
  padding: 10px;
+}
 
+#output{
+ border : 1px solid black;   
+ width: 100%; 
+ margin-left: 75px;
+ margin-top: 15px;
+ height: 18px;
+ padding: 4px;   
 }
 
 .scores{
- border : 1px hidden white;   
+ border : 1px solid black;   
  width: 110%; 
  margin-left: 75px;
- margin-top: 29px;
+ margin-top: 10px;
  height: 60px;
  padding: 4px;
 }
